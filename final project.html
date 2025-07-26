@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookscout Blog</title>
+    <style>
+        *  {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav a, .auth-buttons button {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav a:hover, .auth-buttons button:hover {
+            color: #007bff;
+        }
+        .auth-buttons button {
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .signup {
+            background: none;
+        }
+        .login {
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #666;
+        }
+        .blog-container {
+            display: flex;
+            padding: 50px;
+        }
+        .main-blog {
+            flex: 2;
+        }
+        .main-blog img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .main-blog h2 {
+            margin-top: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 50%;
+            margin: 30px;
+            margin-top: 0px;
+        }
+        .item {
+            display:flex;
+            align-items:flex-start;
+            gap: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .item img {
+            width: 300px;
+            height: 150px;
+            object-fit: cover;
+        }
+        .description {
+            max-width: 400px;
+        }
+        
+        .subscription-section {
+            background-color: #0076ec;
+            color: white;
+            padding: 40px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .subscription-text {
+            max-width: 50%;
+        }
+        .subscription-form {
+            display: flex;
+            align-items: center;
+        }
+        .subscription-form input[type="email"] {
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 350px;
+        }
+        .subscription-form button {
+            padding: 15px 40px;
+            background-color: #004a99;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .blog-section {
+            max-width: 100%;
+            margin:auto;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            text-align: center;
+        }
+        .blog-section h2 {
+            margin-bottom: 8px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .blog-post {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .blog-post img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .blog-post .date {
+            color: gray;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .blog-post h3 {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .blog-post a {
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .hero {
+            width: 100vw;
+            max-width: 100%;
+            background-color: #055ecc;
+            color: white;
+            display: block;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .hero h3 {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .hero h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .hero button {
+            background-color: white;
+            color: #1E73E8;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .hero button:hover {
+            background-color: #1E73E8;
+            color: white;
+            border: 1px solid white;
+        }
+        .footer {
+            width: 100vw;
+            max-width: 100%;
+            background-color: #111;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: left;
+        }
+        .footer-section {
+            max-width: 100%;
+            margin: 10px;
+        }
+        .footer h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            margin: 5px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .footer ul li:hover {
+            color: #1E73E8;
+        }
+        .subscribe {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .subscribe input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .subscribe button {
+            background-color: #1E73E8;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .subscribe button:hover {
+            background-color: white;
+            color: #1E73E8;
+            border: 1px solid #1E73E8;
+        }
+        .footer-bottom {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+            padding: 15px 10px;
+            background-color:rgb(0, 0, 0);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Lookscout</div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Our Products</a>
+            <a href="#">Resources</a>
+            <a href="#">Contacts</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="signup">Sign Up</button>
+            <button class="login">Log In</button>
+        </div>
+    </header>
+    <section class="hero">
+        <p style="color:#007bff;">1% OF THE INDUSTRY</p>
+        <h1>Hype got you here. of it.<br>Stay for best ever help.</h1>
+    </section>
+    <section class="blog-container">
+        <div class="main-blog">
+            <img src="imagine/pho2.jpg" alt="Main Blog">
+            <h2>Reach your users with new tools. Reach your users with new tools. Reach your users with new tools</h2>
+<h2></h2>
+            <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize.Efficiently unleash cross-media information without cross-media value. Quickly maximize Efficiently unleash cross-media.</p>
+            <p>25 Apr 2022</p>
+        </div>
+        <div class="container">
+            <div class="item">
+                <img src="imagine/pho3.jpg" alt="Image 1">
+                <div class="description">
+                    <h3>Reach your users with new tools</h3>
+                    <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize.</p>
+                    <p>25 Apr 2022</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="imagine/pho 4.jpg" alt="Image 2">
+                <div class="description">
+                    <h3>Faster ways to reach your customer</h3>
+                    <p>Completely synergize resource taxing relationships via premier niche markets.</p>
+                    <p>25 Apr 2022 - Blog theme</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="imagine/pho 5.jpg" alt="Image 3">
+                <div class="description">
+                    <h3>Revolutionizing the Design Industry</h3>
+                    <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize.</p>
+                    <p>25 Apr 2022 - Blog theme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="subscription-section">
+            <div class="subscription-text">
+                <h2>Welcome to your new digital reality that</h2>
+                <h2>will rock your world.</h2>
+
+                <p>Let us help you take from zero to serious business and beyond.</p>
+                <p>our no-strings attached free trial lets you test our product today</p>
+            </div>
+            <div class="subscription-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </section>
+    <div class="blog-section">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-grid">
+            <div class="blog-post">
+                <img src="imagine/pho6.jpg" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a new methodology and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="blog-post">
+                <img src="imagine/pho7.png" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a methodology here and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="blog-post">
+                <img src="imagine/pho8.jpg" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a new methodology here and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="blog-post">
+                <img src="imagine/pho9.jpg" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a new methodology and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="blog-post">
+                <img src="imagine/pho10.jpg" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a methodology here and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+            <div class="blog-post">
+                <img src="imagine/pho11.jpg" alt="Blog Image">
+                <p class="date">25 Apr 2022</p>
+                <h3>Organize your digital assets with a new methodology here and there.</h3>
+                <a href="#">Learn more →</a>
+            </div>
+        </div>
+         <div class="hero">
+        <h3>1% OF THE INDUSTRY</h3>
+        <h2>Welcome to your new digital reality that <br> which will rock your world truly at all.</h2>
+        <button>Sign up</button>
+    </div>
+    <div class="footer">
+        <div class="footer-section">
+            <h3>Lookscout</h3>
+            <p>Generate outside-the-box thinking with the possibility to target the low.</p>
+            <div class="subscribe">
+                <input type="email" placeholder="Enter email...">
+                <button>Submit</button>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Why Choose Us?</h3>
+            <ul>
+                <li>Scale</li>
+                <li>Solutions</li>
+                <li>Our Competition</li>
+                <li>Channels</li>
+                <li>Events</li>
+                <li>Watch the Demo</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+                <li>Leadership</li>
+                <li>Careers</li>
+                <li>Investor Relations</li>
+                <li>Media Kit</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li>Community</li>
+                <li>Events</li>
+                <li>Help Center</li>
+                <li>Partners</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2023 Lookscout. All Rights Reserved.
+    </div>
+</body>
+</html>
